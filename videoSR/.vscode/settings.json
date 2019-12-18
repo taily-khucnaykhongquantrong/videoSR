@@ -1,0 +1,7 @@
+{
+    "python.formatting.provider": "black",
+    "python.pythonPath": "C:\\Users\\LTT\\Documents\\LVTN\\videoSR_venv\\Scripts\\python.exe",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true
+}
