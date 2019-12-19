@@ -1,0 +1,45 @@
+.controlsBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 31.9px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #fff;
+  border-radius: 30px;
+  opacity: 0.2;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 100%;
+
+  span {
+    display: inline-flex;
+    font-size: 10px;
+  }
+}
+
+.timeDisplay {
+  font-size: 15px;
+  margin-right: 0.5rem;
+}
+
+.progressBar {
+  width: 100%;
+  height: 100%;
+  padding: 10px 5px;
+}
+
+.video {
+  width: 100%;
+}

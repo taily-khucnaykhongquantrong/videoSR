@@ -1,0 +1,20 @@
+.container {
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 17px;
+  background: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+
+  span {
+    background-color: #5e72e4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0px;
+    border-radius: 50px;
+  }
+}
