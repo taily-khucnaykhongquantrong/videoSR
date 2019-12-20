@@ -18,7 +18,7 @@ module.exports = {
         },
       },
       {
-        test: /\.s?(a|c)ss$/,
+        test: /\.s(a|c)ss$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -34,18 +34,47 @@ module.exports = {
         ],
       },
       {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader",
+            options: {
+              insert: function insertBeforeAt(element) {
+                const parent = document.querySelector("head");
+                const target = document.querySelector("#customStyle");
+
+                const lastInsertedElement =
+                  window._lastElementInsertedByStyleLoader;
+
+                if (!lastInsertedElement) {
+                  parent.insertBefore(element, target);
+                } else if (lastInsertedElement.nextSibling) {
+                  parent.insertBefore(element, lastInsertedElement.nextSibling);
+                } else {
+                  parent.appendChild(element);
+                }
+
+                window._lastElementInsertedByStyleLoader = element;
+              },
+            },
+          },
+          "css-loader",
+        ],
+      },
+      {
         test: /\.(mp4)$/i,
         loader: "file-loader",
         options: {
           name: "videos/[name].[ext]",
+          publicPath: "static/",
         },
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         loader: "file-loader",
         options: {
-          name: "[name].[ext]",
-          outputPath: "styles/",
+          name: "styles/[name].[ext]",
+          publicPath: "static/",
         },
       },
     ],

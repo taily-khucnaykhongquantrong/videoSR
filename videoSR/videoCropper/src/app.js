@@ -2,14 +2,14 @@ import ReactDOM from "react-dom";
 import UniversalRouter from "universal-router";
 // import axios from 'axios';
 
-import routes from "./routes/Home";
+import routes from "./routes";
 import history from "./history";
 // import GLOBAL from './GLOBAL';
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/styles/vendor/nucleo/css/nucleo.css";
-import "./assets/styles/vendor/font-awesome/css/font-awesome.min.css";
 import "./assets/styles/css/argon-design-system-react.min.css";
+import "./assets/styles/vendor/font-awesome/css/font-awesome.min.css";
+import "./assets/styles/vendor/nucleo/css/nucleo.css";
 // import './GlobalStyle.scss';
 
 const container = document.getElementById("app");

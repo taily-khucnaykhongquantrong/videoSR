@@ -81,7 +81,7 @@ class VideoPlayer extends React.Component {
 
   handleUpdateCurrentTime(currentTime) {
     const video = this.videoRef.current;
-    video.currentTime = currentTime;
+    video.currentTime = currentTime.toFixed(6);
   }
 
   render() {

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "recognition",
     "rest_framework",
+    "videoCropper",
 ]
 
 MIDDLEWARE = [

@@ -64,7 +64,6 @@
     }
   },
   "scripts": {
-    "precommit": "lint-staged",
     "dev": "yarn run development",
     "development": "webpack --mode development",
     "watch": "yarn run development --watch",
