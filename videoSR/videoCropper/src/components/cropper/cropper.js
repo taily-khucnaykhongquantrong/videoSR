@@ -33,8 +33,6 @@ class Cropper extends React.Component {
     const width = (128 * videoComponent.offsetWidth) / 1920;
     const height = (128 * videoComponent.offsetHeight) / 1080;
 
-    console.info(width, height);
-
     this.setState({ crop: { x: 0, y: 0, width, height } });
   }
 

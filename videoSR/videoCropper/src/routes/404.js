@@ -9,4 +9,9 @@ const NotFoundPage = () => (
   </Layout>
 );
 
-export default NotFoundPage;
+export default function action() {
+  return {
+    title: "404",
+    component: <NotFoundPage />,
+  };
+}

@@ -1,0 +1,18 @@
+.resultBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+
+  & > * {
+    height: 100%;
+    width: 42px;
+    border-radius: 50%;
+  }
+}

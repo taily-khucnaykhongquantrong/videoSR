@@ -3,6 +3,8 @@ import React from "react";
 
 import Link from "../Link";
 
+import s from "./header.module.scss";
+
 const Header = ({ siteTitle }) => (
   <header
     style={{
@@ -16,6 +18,7 @@ const Header = ({ siteTitle }) => (
         margin: `0 auto`,
         maxWidth: 960,
         padding: `1.45rem 1.0875rem`,
+        display: `flex`,
       }}
     >
       <h1 style={{ margin: 0 }}>
@@ -29,6 +32,11 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
+      <div className={s.navigation}>
+        <Link to="/">Home</Link>
+        <Link to="/library">Library</Link>
+        <Link to="/about">About</Link>
+      </div>
     </div>
   </header>
 );

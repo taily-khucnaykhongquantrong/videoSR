@@ -207,3 +207,4 @@ yarn-error.log
 # Videos
 videoSR/videoCropper/static
 videoSR/videoCropper/src/assets/videos
+static/

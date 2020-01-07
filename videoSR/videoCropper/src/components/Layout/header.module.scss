@@ -1,0 +1,10 @@
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+
+  :not(:last-child) {
+    margin-right: 10px;
+  }
+}

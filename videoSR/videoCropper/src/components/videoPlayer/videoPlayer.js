@@ -3,37 +3,10 @@ import PropTypes from "prop-types";
 
 import ProgressBar from "../progressbar";
 import Button from "../button";
-import videoSrc from "../../assets/videos/license_plate6.mp4";
+import TimeDisplay from "./TimeDisplay";
+// import videoSrc from "../../assets/videos/license_plate8_cut.mp4";
 
 import s from "./videoPlayer.module.scss";
-
-const progressToTime = progress => {
-  const hour = Math.floor(progress / 3600);
-  const minute = Math.floor((progress % 3600) / 60);
-  const second = Math.floor((progress % 3600) % 60);
-
-  return { hour, minute, second };
-};
-
-const displayTime = ({ hour, minute, second }) => {
-  let hourDisplay = "";
-  const minuteDisplay = minute;
-  let secondDisplay = `0${second}`;
-
-  if (hour > 0 && hour < 10) {
-    hourDisplay = `0${hour}`;
-  } else if (hour > 10) {
-    hourDisplay = hour;
-  }
-
-  if (second >= 10) {
-    secondDisplay = second;
-  }
-
-  return hour === 0
-    ? `${minuteDisplay}:${secondDisplay}`
-    : `${hourDisplay}:${minuteDisplay}:${secondDisplay}`;
-};
 
 const playIcon = <i className="ni ni-button-play" />;
 const pauseIcon = <i className="ni ni-button-pause" />;
@@ -41,7 +14,6 @@ const pauseIcon = <i className="ni ni-button-pause" />;
 class VideoPlayer extends React.Component {
   constructor(props) {
     super(props);
-
     this.videoRef = React.createRef();
 
     this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -88,25 +60,20 @@ class VideoPlayer extends React.Component {
     const { currentTime = 0, duration = 0, paused = true, ended = true } =
       this.videoRef.current || {};
     const currentProgress = currentTime / duration || 0;
-    const currentTimestamp = progressToTime(currentTime);
-    const durationTimestamp = progressToTime(duration);
-    const currentTimeDisplay = displayTime(currentTimestamp);
-    const durationDisplay = displayTime(durationTimestamp);
     const buttonIcon = paused || ended ? playIcon : pauseIcon;
+    const { src } = this.props;
 
     return (
       <>
-        {/* eslint-disable-next-line */}
-        <video className={s.video} ref={this.videoRef}>
-          <source src={videoSrc} />
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video className={s.video} ref={this.videoRef} muted>
+          <source src={src} />
         </video>
         <div className={s.controlsBar}>
           <Button className={s.button} onClick={this.handleButtonClick}>
             <span>{buttonIcon}</span>
           </Button>
-          <span className={s.timeDisplay}>
-            {`${currentTimeDisplay}/${durationDisplay}`}
-          </span>
+          <TimeDisplay currentTime={currentTime} duration={duration} />
           <div className={s.progressBar}>
             <ProgressBar
               duration={duration}
@@ -123,6 +90,7 @@ class VideoPlayer extends React.Component {
 VideoPlayer.propTypes = {
   onDisableCrop: PropTypes.func.isRequired,
   onSetCurrentTime: PropTypes.func.isRequired,
+  src: PropTypes.string.isRequired,
 };
 
 export default VideoPlayer;

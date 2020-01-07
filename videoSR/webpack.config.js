@@ -1,6 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+// const RemovePlugin = require("remove-files-webpack-plugin");
 
 module.exports = {
   entry: "./videoCropper/src/app.js",
@@ -88,6 +89,12 @@ module.exports = {
       filename: "styles/[name].css",
       chunkFilename: "styles/[id].css",
     }),
+    /* new RemovePlugin({
+      before: {
+        // parameters for "before compilation" stage.
+        include: [path.join(__dirname, "/videoCropper/static/")],
+      },
+    }), */
   ],
   stats: {
     children: false,

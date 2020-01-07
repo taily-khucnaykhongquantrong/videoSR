@@ -15,12 +15,10 @@ import s from "./layout.module.scss";
 const Layout = ({ children }) => {
   return (
     <>
-      <Header siteTitle="Video SR" />
+      <Header siteTitle="Video Recognition" />
       <Container className={s.body}>{children}</Container>
       <footer className={s.footer}>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
+        © {new Date().getFullYear()}, Built with ReactJS
       </footer>
     </>
   );

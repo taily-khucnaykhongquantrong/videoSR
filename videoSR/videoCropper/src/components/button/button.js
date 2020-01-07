@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import classnames from "classnames";
+import classnames from "classnames";
 import { Button } from "reactstrap";
 
-// import s from "./button.module.scss";
+import s from "./button.module.scss";
 
 const CustomButton = props => {
   const { className, children, value, onClick } = props;
   return (
     <Button
-      className={className}
+      className={classnames(s.button, className)}
       color="primary"
       type="button"
       onClick={onClick}
