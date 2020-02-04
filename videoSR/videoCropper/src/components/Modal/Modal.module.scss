@@ -1,0 +1,39 @@
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 10px;
+  min-width: 20vw;
+  min-height: 30vh;
+  padding: 10px;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+}
+
+.innerText {
+  font-weight: 500;
+  color: #000;
+  background: #f2f2f2;
+  border-radius: 50px;
+  padding: 10px 30px;
+}

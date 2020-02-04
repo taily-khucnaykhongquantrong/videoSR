@@ -3,6 +3,12 @@
 }
 
 .footer {
-  text-align: center;
+  background: #000;
+  color: #fff;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
+  margin-top: 20px;
 }

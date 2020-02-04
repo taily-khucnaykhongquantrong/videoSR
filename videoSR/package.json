@@ -41,8 +41,10 @@
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
     "history": "^4.10.1",
+    "image-to-base64": "^2.0.1",
     "js-cookie": "^2.2.1",
     "react-image-crop": "^8.4.2",
+    "react-loader-spinner": "^3.1.5",
     "reactstrap": "^8.2.0",
     "universal-router": "^8.3.0",
     "watch": "^1.0.2"

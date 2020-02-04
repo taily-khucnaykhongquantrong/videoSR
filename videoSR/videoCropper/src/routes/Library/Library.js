@@ -1,134 +1,93 @@
-import React, { useRef, useState } from "react";
-import PropTypes from "prop-types";
-import { Row, Col } from "reactstrap";
-import axios from "axios";
-import Cookies from "js-cookie";
+import React from "react";
+import { Row, Col, Table, Breadcrumb, BreadcrumbItem } from "reactstrap";
 
 import Layout from "../../components/Layout/layout";
-import Cropper from "../../components/cropper";
-import VideoPlayer from "../../components/videoPlayer";
 import Box from "../../components/box";
-import Button from "../../components/button";
+import history from "../../history";
+import Link from "../../components/Link";
 
 import s from "./Library.module.scss";
+import Button from "../../components/button";
 
-const upscaleIcon = <i className="ni ni-zoom-split-in" />;
-const sendingIcon = <i className="ni ni-cloud-upload-96" />;
+const uploadIcon = <i className="ni ni-cloud-upload-96" />;
+const deleteIcon = <i className="ni ni-fat-remove" />;
+const selectAllIcon = <i className="ni ni-bullet-list-67" />;
 
-const Library = props => {
-  // Constructor
-  const { videoInfo } = props;
-  const defaultVideoWidth = videoInfo.width;
-  const defaultVideoHeight = videoInfo.height;
-  const src = videoInfo.location;
+const Library = () => {
+  const videoList = JSON.parse(sessionStorage.getItem("videoList"));
 
-  // States
-  const [crop, setCrop] = useState({
-    unit: "%",
-    aspect: null,
-    x: 0,
-    y: 0,
-    width: (128 / defaultVideoWidth) * 100,
-    height: (128 / defaultVideoHeight) * 100,
-  });
-  const [disabled, setDisable] = useState(true);
-  const [currentTime, setCurrentTime] = useState(0);
+  const handleClick = e => {
+    const { id } = e.currentTarget;
 
-  // Refs
-  const canvasRef = useRef(null);
-  const videoRef = useRef(null);
-
-  // Initial variables
-  const canvas = <canvas style={{ width: "100%" }} ref={canvasRef} />;
-  const videoPlayer = (
-    <VideoPlayer
-      ref={videoRef}
-      onDisableCrop={setDisable}
-      onSetCurrentTime={setCurrentTime}
-      src={src}
-    />
-  );
-  const ratio = [
-    0,
-    0,
-    defaultVideoWidth / 100,
-    defaultVideoHeight / 100,
-    defaultVideoWidth / 100,
-    defaultVideoHeight / 100,
-  ];
-
-  // Methods
-  const upscale = () => {
-    const convertCrop = Object.fromEntries(
-      Object.entries(crop).map(
-        ([key, value], index) =>
-          (index > 1 && [key, Math.round(value * ratio[index])]) || [key, null]
-      )
-    );
-    const { unit, aspect, ...cropData } = convertCrop;
-    const data = { ...cropData, currentTime };
-    const csrftoken = Cookies.get("csrftoken");
-
-    axios
-      .post("http://localhost:8000/api/sr/", data, {
-        headers: { "X-CSRFToken": csrftoken },
-      })
-      .then(response => console.info(response));
+    if (e.currentTarget !== "_blank") {
+      if (e.defaultPrevented === false && e.button === 0) {
+        e.preventDefault();
+      }
+      history.push(`/library/${id}`);
+    }
   };
 
   return (
     <Layout>
       <Row>
-        <Col xs={12} md={8}>
-          <Cropper
-            croppedImgRef={canvasRef}
-            disabled={disabled}
-            renderComponent={videoPlayer}
-            videoPlayer={videoRef}
-            onCropDone={setCrop}
-          />
+        <Col>
+          <Breadcrumb className={s.breadcrumbs} tag="nav" listTag="div">
+            <BreadcrumbItem>
+              <Link className={s.breadItem} to="/">
+                Home
+              </Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>
+              <Link className={s.breadItem} to="/library">
+                Library
+              </Link>
+            </BreadcrumbItem>
+          </Breadcrumb>
         </Col>
-        <Col md={4}>
-          <Row>
-            <Col>
-              <Box className={s.resultBox}>
-                {canvas}
-                <div className={s.buttonBar}>
-                  <Button onClick={upscale}>
-                    <span>{upscaleIcon}</span>
-                  </Button>
-                  <Button>
-                    <span>{sendingIcon}</span>
-                  </Button>
-                </div>
-              </Box>
-            </Col>
-          </Row>
-          {/* <Row>
-            <Col>
-              <div>
-                <div>{`Current time: ${currentTime}`}</div>
-                {Object.keys(crop).map(
-                  (key, index) =>
-                    index >= 2 && (
-                      <div key={key}>{`${key}: ${Math.round(
-                        crop[key] * ratio[index]
-                      )}`}</div>
-                    )
-                )}
-              </div>
-            </Col>
-          </Row> */}
+      </Row>
+      <Row>
+        <Col>
+          <Box title="Video Library">
+            <div className={s.buttonBar}>
+              <Button>
+                <span>Upload {uploadIcon}</span>
+              </Button>
+              <Button>
+                <span>Delete {deleteIcon}</span>
+              </Button>
+              <Button>
+                <span>Select All {selectAllIcon}</span>
+              </Button>
+            </div>
+            <Table className={s.table}>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Total Time</th>
+                  <th>FPS</th>
+                  <th>Resolution</th>
+                </tr>
+              </thead>
+              <tbody>
+                {videoList.map((video, index) => (
+                  <tr id={video.name} key={video.name} onClick={handleClick}>
+                    <th scope="row">{index + 1}</th>
+                    <td>{video.name}</td>
+                    <td>{video.totalTime}</td>
+                    <td>{video.fps}</td>
+                    <td>{`${video.width} x ${video.height}`}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </Box>
         </Col>
       </Row>
     </Layout>
   );
 };
 
-Library.propTypes = {
-  videoInfo: PropTypes.objectOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  ).isRequired,
-};
+Library.propTypes = {};
 
 export default Library;

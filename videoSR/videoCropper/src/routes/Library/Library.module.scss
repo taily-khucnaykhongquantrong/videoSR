@@ -1,18 +1,47 @@
-.resultBox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.table {
+  tbody > tr {
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(240, 240, 240);
+    }
+  }
+}
+
+.breadcrumbs {
+  & > * {
+    background: none;
+  }
+}
+
+.breadItem {
+  display: inline-block;
 }
 
 .buttonBar {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
-  margin-top: 10px;
+  width: 100%;
+  background: #5e72e4;
+  padding: 10px 20px;
+  margin-top: 20px;
 
-  & > * {
-    height: 100%;
-    width: 42px;
-    border-radius: 50%;
+  & > button:not(:last-child) {
+    margin-right: 20px;
+  }
+
+  & > button {
+    box-shadow: none;
+
+    & > span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & > i {
+        padding-left: 10px;
+      }
+    }
   }
 }

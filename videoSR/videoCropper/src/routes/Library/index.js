@@ -4,10 +4,11 @@ import axios from "axios";
 import Library from "./Library";
 
 export default async function action() {
-  const videoInfo = await axios.get("http://localhost:8000/api/videos/");
+  const videoList = await axios.get("http://localhost:8000/api/videos/");
+  sessionStorage.setItem("videoList", JSON.stringify(videoList.data));
 
   return {
     title: "Library",
-    component: <Library videoInfo={videoInfo.data[0]} />,
+    component: <Library />,
   };
 }

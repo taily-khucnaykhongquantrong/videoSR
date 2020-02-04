@@ -2,9 +2,12 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import Link from "../Link";
+import Button from "../button";
+import Logo from "./hcmut.png";
 
 import s from "./header.module.scss";
 
+const loginIcon = <i className="ni ni-single-02" />;
 const Header = ({ siteTitle }) => (
   <header
     style={{
@@ -21,6 +24,7 @@ const Header = ({ siteTitle }) => (
         display: `flex`,
       }}
     >
+      <img className={s.logo} src={Logo} alt="Logo" />
       <h1 style={{ margin: 0 }}>
         <Link
           to="/"
@@ -37,6 +41,9 @@ const Header = ({ siteTitle }) => (
         <Link to="/library">Library</Link>
         <Link to="/about">About</Link>
       </div>
+      <Button className={s.login}>
+        <span>{loginIcon}</span>
+      </Button>
     </div>
   </header>
 );

@@ -8,3 +8,31 @@
     margin-right: 10px;
   }
 }
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  background: rgb(236, 236, 236);
+  margin: 10px 0 0 20px;
+  color: black;
+
+  &:hover,
+  &:not(:disabled):not(.disabled):active,
+  &:focus,
+  &:visited {
+    background: rgb(221, 221, 221);
+    color: black;
+  }
+}
+
+.logo {
+  width: 55px;
+  height: 100%;
+  margin-right: 20px;
+}

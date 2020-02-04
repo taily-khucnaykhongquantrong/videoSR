@@ -1,6 +1,7 @@
 import Home from "./Home";
 import NotFoundPage from "./404";
 import Library from "./Library";
+import VideoHandler from "./VideoHandler";
 
 const routes = [
   {
@@ -9,7 +10,16 @@ const routes = [
   },
   {
     path: "/library",
-    action: Library,
+    children: [
+      {
+        path: "",
+        action: Library,
+      },
+      {
+        path: "/:videoName",
+        action: VideoHandler,
+      },
+    ],
   },
   {
     path: "(.*)",

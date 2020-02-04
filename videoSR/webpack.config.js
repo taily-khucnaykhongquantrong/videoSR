@@ -1,6 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const webpack = require("webpack");
 // const RemovePlugin = require("remove-files-webpack-plugin");
 
 module.exports = {
@@ -63,11 +64,11 @@ module.exports = {
         ],
       },
       {
-        test: /\.(mp4)$/i,
+        test: /\.(png)$/i,
         loader: "file-loader",
         options: {
-          name: "videos/[name].[ext]",
-          publicPath: "static/",
+          name: "images/[name].[ext]",
+          publicPath: "/static/",
         },
       },
       {
@@ -75,11 +76,12 @@ module.exports = {
         loader: "file-loader",
         options: {
           name: "styles/[name].[ext]",
-          publicPath: "static/",
+          publicPath: "/static/",
         },
       },
     ],
   },
+  node: { fs: "empty" },
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],

@@ -9,7 +9,7 @@ const Box = ({ className, children, title }) => {
   return (
     <Card className={classnames(s.box, className)}>
       <CardBody>
-        <h4>{title}</h4>
+        <h2>{title}</h2>
         {children}
       </CardBody>
     </Card>
