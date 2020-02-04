@@ -16,7 +16,7 @@ def generate():
     #################
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     device = torch.device("cuda")
-    model_path = "/recognition/SRModels/EDVR/models/EDVRaligned.pth"
+    model_path = "/recognition/SRModels/models/EDVRaligned.pth"
 
     # default configuration
     nf = 64
